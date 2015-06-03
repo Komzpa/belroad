@@ -113,7 +113,7 @@ Map {
   text-min-distance: 13;
   text-orientation: [angle];
   text-halo-radius: 1.5;
-  text-halo-fill: mix(@gray, @lightgray, 25%);
+  text-halo-fill: mix(@gray, @lightgray, 25%); 
   /*
   colored halos need more thinking.
   [highway='primary']{text-halo-fill: mix(@redroad, @lightgray, 25%);}
@@ -128,4 +128,29 @@ Map {
 #barriers[zoom>=16] {
   line-width:.5;
   line-color:#000;
+}
+
+#buildings3d {
+  //line-width:1;line-color:#168;
+  [visible='yes-h'], [visible='yes-v'] {line-color:#444; line-width: 0.3}
+  [visible='no-h'], [visible='no-v'] {line-color:#444; line-width: 0.1}
+  [visible='yes'] {polygon-fill: silver; polygon-opacity: 0.6}
+  [visible='shadow'] {polygon-fill: black; polygon-opacity: 0.1}
+  [hv=2][visible='yes-h'] {polygon-fill: silver; polygon-opacity: 0.9}
+  ::burn {
+    [hv=1][visible='yes'] {
+    	polygon-fill: rgba(0,0,0,.4);
+    	[azim>=0.0][azim<18.0] {polygon-opacity: 0.7}
+    	[azim>=18.0][azim<36.0] {polygon-opacity: 0.69}
+    	[azim>=36.0][azim<54.0] {polygon-opacity: 0.661}
+    	[azim>=54.0][azim<72.0] {polygon-opacity: 0.617}
+    	[azim>=72.0][azim<90.0] {polygon-opacity: 0.561}
+    	[azim>=90.0][azim<108.0] {polygon-opacity: 0.5}
+    	[azim>=108.0][azim<126.0] {polygon-opacity: 0.438}
+    	[azim>=126.0][azim<144.0] {polygon-opacity: 0.382}
+    	[azim>=144.0][azim<162.0] {polygon-opacity: 0.338}
+    	[azim>=162.0][azim<180.0] {polygon-opacity: 0.309}
+
+    }
+  }
 }
