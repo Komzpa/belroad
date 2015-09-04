@@ -4,13 +4,12 @@
 @gray: #909090;
 @lightgray: #e0e0e0;
 @lightlightgray: #efefef;
-@purple: #ac46ac;
+@purple: #ac46ac; 
 @lpurple: lighten(@purple, 40%);
 @yellow: #ffe7a8;
 @redroad: #d57c8f;
 @orange: #ffb879;
-@brown: #b89762;
-
+@brown: #b89762; 
 
 @sans: "PT Sans Regular", "Droid Sans Fallback Regular";
 @sans_italic: "PT Sans Italic", "Droid Sans Fallback Regular";
@@ -26,7 +25,7 @@ Map {
 .route {
   line-width:5;
   line-color:#012d64;
-  line-join: round;
+  line-join: round; 
   line-cap: round;
   [zoom<10] {
     line-width: 4;
@@ -130,27 +129,46 @@ Map {
   line-color:#000;
 }
 
-#buildings3d {
-  //line-width:1;line-color:#168;
-  [visible='yes-h'], [visible='yes-v'] {line-color:#444; line-width: 0.3}
-  [visible='no-h'], [visible='no-v'] {line-color:#444; line-width: 0.1}
-  [visible='yes'] {polygon-fill: silver; polygon-opacity: 0.6}
-  [visible='shadow'] {polygon-fill: black; polygon-opacity: 0.1}
-  [hv=2][visible='yes-h'] {polygon-fill: silver; polygon-opacity: 0.9}
-  ::burn {
-    [hv=1][visible='yes'] {
-    	polygon-fill: rgba(0,0,0,.4);
-    	[azim>=0.0][azim<18.0] {polygon-opacity: 0.7}
-    	[azim>=18.0][azim<36.0] {polygon-opacity: 0.69}
-    	[azim>=36.0][azim<54.0] {polygon-opacity: 0.661}
-    	[azim>=54.0][azim<72.0] {polygon-opacity: 0.617}
-    	[azim>=72.0][azim<90.0] {polygon-opacity: 0.561}
-    	[azim>=90.0][azim<108.0] {polygon-opacity: 0.5}
-    	[azim>=108.0][azim<126.0] {polygon-opacity: 0.438}
-    	[azim>=126.0][azim<144.0] {polygon-opacity: 0.382}
-    	[azim>=144.0][azim<162.0] {polygon-opacity: 0.338}
-    	[azim>=162.0][azim<180.0] {polygon-opacity: 0.309}
-
-    }
+@building_shade: #ccc;
+#buildings3d[zoom>14] {
+  ::shadow {
+    [visible='shadow'] { 
+    	polygon-fill: black;
+  		opacity: 0.1
+  	}
   }
+  //line-width:1;line-color:#168;
+  //[visible='yes-h'], [visible='yes-v'] {line-color:#444; line-width: 0.3}
+  //[visible='no-h'], [visible='no-v'] {line-color:#444; line-width: 0.1}
+  [hv=2][visible='yes-h'] {
+    polygon-fill: mix(@building_base, @building_shade, 29%);
+    line-color: @building_base; 
+    line-width: 0.2;
+    //polygon-opacity: 0.9
+  }
+  /*[visible='yes'] {
+    polygon-fill: silver; 
+    line-color: @building_base; 
+    line-width: 0.5;
+  //  polygon-opacity: 0.6
+  }*/
+
+
+  //::burn {
+    [hv=1][visible='yes'] {
+    	[azim>=0.0][azim<18.0] {polygon-fill: mix(@building_base, @building_shade, 70%)}
+    	[azim>=18.0][azim<36.0] {polygon-fill: mix(@building_base, @building_shade, 69%)}
+    	[azim>=36.0][azim<54.0] {polygon-fill: mix(@building_base, @building_shade, 66%)}
+    	[azim>=54.0][azim<72.0] {polygon-fill: mix(@building_base, @building_shade, 62%)}
+    	[azim>=72.0][azim<90.0] {polygon-fill: mix(@building_base, @building_shade, 56%)}
+    	[azim>=90.0][azim<108.0] {polygon-fill: mix(@building_base, @building_shade, 50%)}
+    	[azim>=108.0][azim<126.0] {polygon-fill: mix(@building_base, @building_shade, 44%)}
+    	[azim>=126.0][azim<144.0] {polygon-fill: mix(@building_base, @building_shade, 38%)}
+    	[azim>=144.0][azim<162.0] {polygon-fill: mix(@building_base, @building_shade, 33%)}
+    	[azim>=162.0][azim<180.0] {polygon-fill: mix(@building_base, @building_shade, 31%)}
+    	line-color: @building_base; 
+    	line-width: 0.5;
+    }
+//  }
+  
 }

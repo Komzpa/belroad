@@ -11,9 +11,9 @@
 #lakes[zoom>=9][zoom<11][way_area>1e6],
 #lakes[zoom>=11] {
   polygon-opacity:1;
-  polygon-fill:@water;
+  polygon-fill:@water; 
 }
-
+ 
 #rivers[waterway="river"],
 #rivers[waterway="canal"] {
   [zoom<8][length>10000] {
@@ -83,3 +83,4 @@
   text-allow-overlap: false;
   text-wrap-width: 10;
 }
+
